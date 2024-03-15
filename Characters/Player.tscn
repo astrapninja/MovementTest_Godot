@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dc6wuh0atpi33"]
+[gd_scene load_steps=11 format=3 uid="uid://dc6wuh0atpi33"]
 
 [ext_resource type="Script" path="res://Scripts/Player/CharacterMove.gd" id="1_48dol"]
 [ext_resource type="Script" path="res://Scripts/States/StateMachine.gd" id="2_2qxb4"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/States/PlayerWalk.gd" id="5_yvelv"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerJump.gd" id="6_3xyqd"]
 [ext_resource type="Script" path="res://Scripts/States/PlayerSprint.gd" id="7_6uejd"]
+[ext_resource type="Script" path="res://Scripts/States/PlayerStandSlide.gd" id="8_a57s5"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_mf130"]
 
@@ -54,4 +55,8 @@ player = NodePath("../..")
 
 [node name="Sprint" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_6uejd")
+player = NodePath("../..")
+
+[node name="StandSlide" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
+script = ExtResource("8_a57s5")
 player = NodePath("../..")

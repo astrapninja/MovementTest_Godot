@@ -27,10 +27,12 @@ func _Update(_delta : float):
 	
 	#Slide
 	if !Input.get_action_strength("left") and !Input.get_action_strength("right"):
-		#print("Slide")
+		Transitioned.emit("StandSlide")
+		print("change")
 		return
 	elif Input.get_action_strength("left") and Input.get_action_strength("right"):
-		#print("Slide")
+		Transitioned.emit("StandSlide")
+		print("change2")
 		return
 	
 	#Walk

@@ -59,7 +59,7 @@ func _Physics_Update(_delta : float):
 		player.velocity.x += (input_direction[0] * 50)
 		lastDirection = input_direction[0]
 	
-	#TODO: Make acceleration/deacceleration smoother / fix math
+	#TODO: Make acceleration/deceleration smoother / fix math
 	if player.velocity.x * input_direction[0] > walkSpeed:
 		player.velocity.x -= (input_direction[0] * acceleration * _delta) #delete delta to make it instant
 		acceleration += (acceleration*0.06)
