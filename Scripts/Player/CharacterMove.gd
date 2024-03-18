@@ -14,6 +14,8 @@ extends CharacterBody2D
 @export var walkSpeed : float
 
 #Fix all player code(i.e. States)
+
+#TODO: Redo Jumping - all states will apply impulse velocity if they can jump. Jump state will only decrease the velocity. or make fall do it idc which
 func _physics_process(delta : float):
 	
 	var input_direction = Vector2(
