@@ -19,9 +19,12 @@ script = ExtResource("1_48dol")
 coyoteJumpTime = 0.25
 gravityAccelerationRate = 0.475
 gravityMaxVelocity = 2500.0
+hasDoubleJumped = true
 jumpFalloffRate = 10.0
 jumpStrength = 400.0
-sprintSpeed = 25.0
+sprintAccelerationTime = 0.75
+sprintSpeed = 250.0
+walkAccelerationRate = 5.0
 walkSpeed = 100.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -33,9 +36,10 @@ texture = SubResource("CanvasTexture_mf130")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_beay5")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initialState", "player")]
 script = ExtResource("2_2qxb4")
 initialState = NodePath("Idle")
+player = NodePath("..")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("3_d3a8x")

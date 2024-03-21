@@ -3,25 +3,21 @@ class_name PlayerSprint
 
 @export var player : CharacterBody2D
 
-var sprintSpeed : float
-var sprintAccelerationRate : float
-
 var acceleration : float
+var inputDirection : Vector2
+var sprintSpeed : float
+var sprintAccelerationTime : float
 
 func _Enter():
 	
+	acceleration = 0
 	sprintSpeed = player.sprintSpeed
-	sprintAccelerationRate = player.sprintAccelerationRate
+	sprintAccelerationTime = player.sprintAccelerationTime
 	
-	acceleration = sprintAccelerationRate
+	inputDirection = player.inputDirection
 	
 	if player.velocity.x < sprintSpeed - 50: # TODO: Replace this with dash
-		var input_direction = Vector2(
-		Input.get_action_strength("right") - Input.get_action_strength("left"),
-		Input.get_action_strength("down") - Input.get_action_strength("up")
-		)
-	
-		player.velocity.x += input_direction[0] * (sprintSpeed/4)
+		player.velocity.x += inputDirection[0] * (sprintSpeed/4)
 
 func _Update(_delta : float):
 	
@@ -45,16 +41,20 @@ func _Update(_delta : float):
 
 func _Physics_Update(_delta : float):
 	
-	var input_direction = Vector2(
-		Input.get_action_strength("right") - Input.get_action_strength("left"),
-		Input.get_action_strength("down") - Input.get_action_strength("up")
-	)
+	var accel = 0
 	
-	if player.velocity.x != input_direction[0] * sprintSpeed:
-		player.velocity.x += (input_direction[0] * acceleration * _delta)
+	if sprintAccelerationTime > 0:
+		var difference = (abs(player.velocity.x) - sprintSpeed)
+		accel = difference/ sprintAccelerationTime*_delta
+		sprintAccelerationTime -= _delta
+		print(abs(accel)*inputDirection[0], " ", difference, " ", sprintAccelerationTime)
+	
+	inputDirection = player.inputDirection
+	
+	if player.velocity.x != inputDirection[0] * sprintSpeed:
+		player.velocity.x += (inputDirection[0] * acceleration * _delta)
 		acceleration += (acceleration*0.1)
 		player.velocity.x = player.velocity.limit_length(sprintSpeed)[0]
 		return
 	
 	return
-	

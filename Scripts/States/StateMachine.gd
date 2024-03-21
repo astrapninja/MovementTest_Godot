@@ -1,6 +1,7 @@
 extends Node
 
 @export var initialState : State
+@export var player : CharacterBody2D
 
 var currentState : State
 var states : Dictionary = {}
@@ -27,6 +28,8 @@ func _physics_process(delta):
 		currentState._Physics_Update(delta)
 
 func _On_Child_Transition(state, newStateName):
+	
+	
 	if state != currentState:
 		return
 	
@@ -36,10 +39,15 @@ func _On_Child_Transition(state, newStateName):
 	
 	if currentState:
 		currentState._Exit()
-	
-	newState._Enter()
-	
+		
+	player.lastState = currentState
+	player.currentState = newState
 	currentState = newState
+	
+	currentState._Enter()
+	
 	print("\nEntered ", currentState.name)
+	if player.lastState:
+		print("From ", player.lastState.name)
 	
 	pass
