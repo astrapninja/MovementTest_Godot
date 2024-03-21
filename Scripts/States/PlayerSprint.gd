@@ -34,9 +34,6 @@ func _Update(_delta : float):
 		Transitioned.emit(self, "Walk")
 		return
 		
-		
-		print("test_git")
-	
 	#Jump
 	if Input.get_action_strength("jump"):
 		Transitioned.emit(self, "Jump")
