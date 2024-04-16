@@ -31,7 +31,7 @@ func _Update(_delta : float):
 	
 	if Input.get_action_strength("sprint") and (Input.get_action_strength("left") or Input.get_action_strength("right")) and !(Input.get_action_strength("left") and Input.get_action_strength("right")):
 		if player.velocity.x * lastXDirection < velocityThreshold:
-			player.velocity.x += input_direction[0] * 50
+			player.velocity.x += input_direction[0] * 150
 			Transitioned.emit(self, "Sprint")
 			return
 	

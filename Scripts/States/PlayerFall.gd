@@ -13,7 +13,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _Enter():
 	
-	print(player.gravityAccelerationRate)
+	#print(player.gravityAccelerationRate)
 	gravityAccelerationRate = player.gravityAccelerationRate
 	gravityMaxVelocity = player.gravityMaxVelocity
 	coyoteJumpTime = player.coyoteJumpTime
@@ -49,7 +49,7 @@ func _Physics_Update(_delta: float):
 	if !player.is_on_floor():
 		if player.velocity.y != gravityMaxVelocity:
 			player.velocity.y += (gravity*gravityAccelerationRate) * _delta
-			
+		
 		if player.velocity.y > gravityMaxVelocity:
 			player.velocity.y = gravityMaxVelocity
 		

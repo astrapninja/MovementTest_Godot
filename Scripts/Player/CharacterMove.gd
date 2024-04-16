@@ -2,13 +2,14 @@ extends CharacterBody2D
 
 @export var coyoteJumpTime : float
 @export var currentState : State
+@export_group("Idk")
 @export var gravityAccelerationRate : float
 @export var gravityMaxVelocity : float
 @export var hasDoubleJumped : bool
 @export var jumpFalloffRate : float
 @export var jumpStrength : float
 @export var lastState : State
-@export var lastXDirection : int
+var lastXDirection : int = -1
 @export var sprintAccelerationTime : float
 @export var sprintSpeed : float
 @export var standSlideSprint : float
@@ -21,6 +22,8 @@ var inputDirection : Vector2
 
 #TODO: Redo Jumping - all states will apply impulse velocity if they can jump. Jump state will only decrease the velocity. or make fall do it idc which
 func _physics_process(_delta : float):
+	
+	velocity.y += ProjectSettings.get_setting("physics/2d/default_gravity_vector")[1]
 	
 	inputDirection = Vector2(
 		Input.get_action_strength("right") - Input.get_action_strength("left"),

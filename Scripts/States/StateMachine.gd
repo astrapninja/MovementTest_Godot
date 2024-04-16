@@ -16,7 +16,7 @@ func _ready():
 	
 	if initialState:
 		initialState._Enter()
-		print("Entered ", initialState.name)
+		#print("Entered ", initialState.name)
 		currentState = initialState
 
 func _process(delta):
@@ -46,8 +46,9 @@ func _On_Child_Transition(state, newStateName):
 	
 	currentState._Enter()
 	
-	print("\nEntered ", currentState.name)
+	#print("\nEntered ", currentState.name)
 	if player.lastState:
-		print("From ", player.lastState.name)
+		#print("From ", player.lastState.name)
+		pass
 	
 	pass

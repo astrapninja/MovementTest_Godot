@@ -13,10 +13,10 @@ func _Enter():
 	
 	if player.lastState.name != "StandSlide":
 		player.velocity.y = -jumpStrength
-		print("\n\t --", player.currentState, "\n")
+		#print("\n\t --", player.currentState, "\n")
 	else:
 		player.velocity.y = -jumpStrength*1.5
-		print("\n\t--Ye it works\n")
+		#print("\n\t--Ye it works\n")
 
 func _Update(_delta : float):
 	if player.velocity.y >= 0:
